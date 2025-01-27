@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.telecom.signup.entity.User;
+import com.telecom.signup.pojo.EmailApidata;
+import com.telecom.signup.pojo.GetByEmailapidata;
 import com.telecom.signup.pojo.ProfileUpdateApidata;
 import com.telecom.signup.pojo.SignupApiData;
 import com.telecom.signup.repository.UserRepository;
@@ -57,12 +59,28 @@ public class SignupService {
 	}
 	
 	
+	
 	public Optional<User> getUserData(int id) {
 		
 		Optional<User> dbResponse =	userRepository.findById(id);
 		return dbResponse;
 		
 	}
+	
+	
+	
+	
+	public Object databyemail(EmailApidata emailApidata) {
+		
+		Optional<User> dbDataOptional =	userRepository.findByEmail(emailApidata.getEmail());
+		if (dbDataOptional.isPresent() == true) {
+			return dbDataOptional.get();
+		}
+		else {
+			return "user not found";
+		}
+	}
+	
 	
 	
 	
