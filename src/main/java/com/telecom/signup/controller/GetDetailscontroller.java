@@ -63,6 +63,15 @@ public class GetDetailscontroller {
 		
 	}
 	
+	@PostMapping("userloginsp")
+	public Object loginSp(@RequestBody LoginApidata loginApidata) {
+		
+		 return signupService.loginService(loginApidata);
+		
+		
+		
+	}
+	
 	
 	
 	

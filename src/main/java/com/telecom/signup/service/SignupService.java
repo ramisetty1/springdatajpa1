@@ -78,10 +78,26 @@ public class SignupService {
 		}
 	}
 	
-	
+	//login with query
 	public Object loginService(LoginApidata loginApidata) {
 		
 		Optional<User> dbdataOptional =	userRepository.dbLoginWithQuery(loginApidata.getEmail(), loginApidata.getPassword());
+		if (dbdataOptional.isPresent() == true) {
+			
+			return dbdataOptional.get();
+			
+		}
+		else {
+			return "user not found";
+		}
+		
+	}
+	
+	//login with stored procedure
+	
+	public Object loginWithStored(LoginApidata loginApidata) {
+		
+		Optional<User> dbdataOptional =	userRepository.dbLoginWithStoredprocedure(loginApidata.getEmail(), loginApidata.getPassword());
 		if (dbdataOptional.isPresent() == true) {
 			
 			return dbdataOptional.get();
