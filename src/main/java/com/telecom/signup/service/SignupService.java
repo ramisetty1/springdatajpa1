@@ -57,6 +57,14 @@ public class SignupService {
 	}
 	
 	
+	public Optional<User> getUserData(int id) {
+		
+		Optional<User> dbResponse =	userRepository.findById(id);
+		return dbResponse;
+		
+	}
+	
+	
 	
 
 }
