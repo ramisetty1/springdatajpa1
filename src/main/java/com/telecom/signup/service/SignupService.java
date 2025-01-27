@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.telecom.signup.entity.User;
 import com.telecom.signup.pojo.EmailApidata;
-import com.telecom.signup.pojo.GetByEmailapidata;
+import com.telecom.signup.pojo.LoginApidata;
 import com.telecom.signup.pojo.ProfileUpdateApidata;
 import com.telecom.signup.pojo.SignupApiData;
 import com.telecom.signup.repository.UserRepository;
@@ -29,10 +29,7 @@ public class SignupService {
 		user.setPassword(signupApiData.getPassword());
 		
 		User newUser = userRepository.save(user);
-		
-		
-		
-		
+
 		return newUser;
 		
 		
@@ -80,6 +77,25 @@ public class SignupService {
 			return "user not found";
 		}
 	}
+	
+	
+	public Object loginService(LoginApidata loginApidata) {
+		
+		Optional<User> dbdataOptional =	userRepository.dbLoginWithQuery(loginApidata.getEmail(), loginApidata.getPassword());
+		if (dbdataOptional.isPresent() == true) {
+			
+			return dbdataOptional.get();
+			
+		}
+		else {
+			return "user not found";
+		}
+		
+	}
+	
+	
+	
+	
 	
 	
 	

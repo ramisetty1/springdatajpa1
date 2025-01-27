@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.telecom.signup.entity.User;
 import com.telecom.signup.pojo.EmailApidata;
+import com.telecom.signup.pojo.LoginApidata;
 import com.telecom.signup.service.SignupService;
 
 @RestController
@@ -46,8 +47,18 @@ public class GetDetailscontroller {
 	
 	@PostMapping("useremail")
 	public Object getDetailsbyUseremail(@RequestBody EmailApidata emailApidata) {
-		return signupService.databyemail(emailApidata);
+		return signupService.databyemail(emailApidata);	
+		
+	}
 	
+	
+	
+	
+	@PostMapping("user-login")
+	public Object loginController(@RequestBody LoginApidata loginApidata) {
+		
+		 return signupService.loginService(loginApidata);
+		
 		
 		
 	}
